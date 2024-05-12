@@ -1,0 +1,38 @@
+<body>
+    <div class="form-register">
+        <mat-icon style="font-size: 70px; width: 70px; height: 70px;">quiz</mat-icon><i>QuizApp</i>
+        <h4>Ingrese un nuevo usuario y contraseña</h4>
+        <form [formGroup]="register" (ngSubmit)="Send()">
+            <div ali>
+                <input type="text" placeholder="Usuario" formControlName="user">
+                <br>
+                <span *ngIf="register.get('user')?.hasError('required') && register.get('user')?.touched">
+                    El usuario es requerido
+                </span>
+                <span *ngIf="register.get('user')?.hasError('minlength') && register.get('user')?.touched">
+                    El mínimo son 4 caracteres
+                </span>
+            </div>
+            <br>
+            <div>
+                <input type="password" placeholder="Contraseña" formControlName="pass">
+                <br>
+                <span *ngIf="register.get('pass').hasError('required') && register.get('pass')?.touched">La contraseña es
+                    requerida</span>
+                <span *ngIf="register.get('pass')?.hasError('minlength') && register.get('pass')?.touched">
+                    El mínimo son 4 caracteres
+                </span>
+            </div>
+            <br>
+            <div>
+                <input type="password" placeholder="Confirmar contraseña" formControlName="confirm_pass">
+                <br>
+                <span *ngIf="register.hasError('notSame')">Las contraseñas no coinciden</span>
+            </div>
+            <br><br>
+            <div class="button">
+                <button id="button" mat-button type="submit" >Continuar</button>
+            </div>
+        </form>
+    </div>
+</body>

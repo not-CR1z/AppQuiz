@@ -4,3 +4,7 @@
     z-index: 9999;
     justify-content: space-between;
 }
+span{
+    font-family: system-ui;
+    font-size: 40px;
+}

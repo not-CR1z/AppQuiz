@@ -8,25 +8,25 @@ body {
 }
 
 form {
-    font-size: 1em;
+    font-size: 0.8em;
     text-align: left;
 }
 
 input {
     width: 250px;
-    margin-bottom: 30px;
+    margin-top: 15px;
     height: 40px;
     border-radius: 0.5em;
     background-color: #313131;
     border-color: #415866;
 }
 
-h1 {
-    text-align: center;
-    font-size: 40px;
+span {
+    color: tomato;
+    position: absolute;
 }
 
-.form-login {
+.form-register {
     margin: auto;
     display: flex;
     justify-content: center;
@@ -40,21 +40,18 @@ h1 {
     box-shadow: #222222 0px 0px 600px;
 }
 
-.button input {
+#button {
     width: 120px;
     height: 50px;
     border-radius: 0.5em;
-    margin: auto;
-    text-align: center;
-    color: #070c12;
-    background-color: #181717;
+    background-color: #312f2f;
     color: white;
     font-size: 20px;
     cursor: pointer;
 }
 
-.button input:hover {
-    background-color: #053d518f
+#button:hover {
+    background-color: #050505
 }
 
 .button {
@@ -66,6 +63,7 @@ h1 {
     font-size: 13px;
     cursor: pointer;
 }
-.create_account:hover{
+
+.create_account:hover {
     text-decoration: underline;
 }
