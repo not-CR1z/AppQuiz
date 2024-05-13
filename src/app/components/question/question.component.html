@@ -1,1 +1,27 @@
-<p>question works!</p>
+<h1 style="text-align: center;">Pregunta 1</h1>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div>
+        <mat-form-field class="example-full-width" style="width: 50vw;">
+            <mat-label>Pregunta</mat-label>
+            <input matInput placeholder="Escribe tu pregunta">
+        </mat-form-field>
+    </div>
+    <div>
+        <section class="example-section" [formGroup]="toppings" style="padding: 20px;">
+            <mat-card-content style="padding-bottom: 0;">
+                <span>A.</span><mat-checkbox formControlName="pepperoni"></mat-checkbox><mat-form-field
+                    style="width: 40vw;"><input matInput placeholder="Escribe tu pregunta"></mat-form-field>
+            </mat-card-content>
+        </section>
+        <section class="example-section" [formGroup]="toppings" style="padding: 20px;">
+            <mat-card-content style="padding-bottom: 0;">
+                <span>B.</span><mat-checkbox formControlName="pepperoni"></mat-checkbox><mat-form-field
+                    style="width: 40vw;"><input matInput placeholder="Escribe tu pregunta"></mat-form-field>
+            </mat-card-content>
+        </section>
+    </div>
+</div>
+<div style="text-align: center;">
+    <button class="back_button" mat-raised-button color="raised">ir a inicio</button>
+    <button class="next_button" mat-raised-button color="primary" routerLink="/dashboard">siguiente</button>
+</div>

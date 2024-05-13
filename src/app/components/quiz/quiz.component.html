@@ -1,1 +1,32 @@
-<p>quiz works!</p>
+<div class="quiz_container">
+    <h1>Crea un nuevo quiz</h1>
+    <div class="quiz_form">
+        <div class="quiz_inputs_top">
+            <div class="quiz_name">
+                <mat-form-field style="width: 30vw;">
+                    <mat-label>Nombre del quiz</mat-label>
+                    <input matInput placeholder="Ex. Pizza" value="Sushi">
+                </mat-form-field>
+            </div>
+            <div style=" display: flex;">
+                <mat-form-field style="width: 20vwpx;">
+                    <mat-label>Categoría</mat-label>
+                    <mat-select [formControl]="panelColor" panelClass="example-panel-{{panelColor.value}}">
+                        <mat-option value="red">Red</mat-option>
+                        <mat-option value="green">Green</mat-option>
+                        <mat-option value="blue">Blue</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div style="display: flex;">
+            <mat-form-field style="width: 45vw; height: 30vh;">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">atras</button>
+<button class="next_button" mat-raised-button color="primary" routerLink="/question">siguiente</button>
