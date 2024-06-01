@@ -1,15 +1,14 @@
-<div style="display: flex;  flex-direction: column;">
-    <div style="background-color: #252525; height: 50vh;">
+<div class="profile_container">
+    <div class="profile_header">
         <h1>Mi perfil</h1>
-        <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="profile_header_container">
             <div style="display: flex; flex-direction: row;">
-                <div style="display: flex;flex-direction: column; align-items: start; margin-right: 60px;">
+                <div class="info_user">
                     <span style="font-size: 50px;">Crixtoph</span>
                     <button mat-raised-button color="primary" style="width: 120px;">Cambiar contraseña</button>
                 </div>
-                <div class="avatar" style="display: flex; flex-direction: row;">
-                    <img src="../../../assets/descarga.png" alt="bear avatar"
-                        style="border-radius: 50%; width: 140px; display: block;">
+                <div class="avatar">
+                    <img class="avatar_image" [src]="avatarImage" alt="bear avatar">
                 </div>
             </div>
         </div>
@@ -20,15 +19,23 @@
             <div *ngFor="let c of cards" class="card">
                 <mat-card class="example-card">
                     <mat-card-header>
-                        <mat-card-title-group>
-                            <mat-card-title>Shiba Inu</mat-card-title>
-                            <mat-card-subtitle>Extra large</mat-card-subtitle>
-                            <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-                        </mat-card-title-group>
+                      <mat-card-title-group>
+                        <mat-card-title>Shiba Inu</mat-card-title>
+                        <mat-card-subtitle>Small</mat-card-subtitle>
+                        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+                      </mat-card-title-group>
                     </mat-card-header>
                     <mat-card-content>
-                        {{longText}}
+                      {{longText}}
                     </mat-card-content>
+                    <div class="exams_actions_container">
+                      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
                 </mat-card>
             </div>
         </div>

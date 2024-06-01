@@ -1,6 +1,9 @@
+import { QuizService } from 'src/app/quiz.service';
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserLogin } from 'src/app/models/QuizModels';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +12,22 @@ import { NgModule } from '@angular/core';
 })
 export class LoginComponent {
   login: FormGroup;
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private router: Router, private quizService: QuizService, private toastr: ToastrService) {
     this.login = this.fb.group
-    ({
-      user:['',Validators.required],
-      pass:['',Validators.required]
-    })
+      ({
+        userName: ['', Validators.required],
+        password: ['', Validators.required]
+      })
+  }
+  Submit() {
+    let user: UserLogin = this.login.value;
+    this.quizService.Login(user).subscribe(data => {
+      this.router.navigate(['/dashboard'])
+    },
+      error => {
+        this.toastr.error(error.error.message, "Error")
+      }
+    )
   }
 }

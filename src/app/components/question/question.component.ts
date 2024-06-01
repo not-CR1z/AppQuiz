@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent {
+OptionPush() {
+  this.options.push(2)
+}
   
   constructor(private _formBuilder: FormBuilder) {
   }
@@ -16,4 +19,6 @@ export class QuestionComponent {
     extracheese: false,
     mushroom: false,
   });
+
+  options = [0];
 }

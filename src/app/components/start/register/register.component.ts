@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/models/User';
+import { UserLogin } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class RegisterComponent {
   }
 
   async Send() {
-    let user = new User();
+    let user = new UserLogin();
     user.userName = this.register.get('user').value;
     user.password = this.register.get('pass').value;
     await this.http.post('https://localhost:7043/api/User',{

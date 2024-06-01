@@ -8,13 +8,13 @@
 }
 
 .quiz_form {
-    width: 50vw;
+    width: 60vw;
     height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border-radius: 2%;
+    border-radius: 2rem;
     background-color: #212121;
 }
 

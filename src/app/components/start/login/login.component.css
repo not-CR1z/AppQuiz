@@ -1,6 +1,6 @@
 body {
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -19,6 +19,12 @@ input {
     border-radius: 0.5em;
     background-color: #313131;
     border-color: #415866;
+}
+
+.quiz_ico {
+    font-size: 70px;
+    width: 70px;
+    height: 70px;
 }
 
 span {

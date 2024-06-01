@@ -1,20 +1,20 @@
 <body>
     <div class="form-login">
-        <mat-icon style="font-size: 70px; width: 70px; height: 70px;">quiz</mat-icon><i>QuizApp</i>
+        <mat-icon class="quiz_ico">quiz</mat-icon><i>QuizApp</i>
         <h3>Login</h3>
-        <form [formGroup]="login">
+        <form [formGroup]="login" (ngSubmit)="Submit()">
             <div ali>
-                <input type="text" placeholder="Usuario" formControlName="user">
+                <input type="text" placeholder="Usuario" formControlName="userName">
                 <br>
-                <span *ngIf="login.get('user')?.hasError('required') && login.get('user')?.touched">
+                <span *ngIf="login.get('userName')?.hasError('required') && login.get('userName')?.touched">
                     El usuario es requerido
                 </span>
             </div>
             <br>
             <div>
-                <input type="password" placeholder="Contraseña" formControlName="pass">
+                <input type="password" placeholder="Contraseña" formControlName="password">
                 <br>
-                <span *ngIf="login.get('pass').hasError('required') && login.get('pass')?.touched">La contraseña es
+                <span *ngIf="login.get('password').hasError('required') && login.get('password')?.touched">La contraseña es
                     requerida</span>
             </div>
             <br>

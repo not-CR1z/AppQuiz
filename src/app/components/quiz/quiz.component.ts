@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -7,5 +8,11 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent {
-  panelColor = new FormControl('red');
+  quiz: FormGroup;
+  constructor(fb: FormBuilder, private router: Router) {
+   
+  }
+  SendQuiz() {
+    this.router.navigate(['/question']);
+  }
 }
