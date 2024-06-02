@@ -1,4 +1,4 @@
-import { User, UserLogin } from './models/QuizModels';
+import { Question, Quiz, User, UserLogin } from './models/QuizModels';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -20,6 +20,16 @@ export class QuizService {
 
   public GetQuizzes(): Observable<any>{
     return this.http.post('https://localhost:7043/api/Quiz/getQuizzes','');
+  }
+
+  public GetCategories(): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/getCategories','');
+  }
+  public AddQuiz(quiz: Quiz): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/addQuiz',quiz);
+  }
+  public AddQuestion(question: any): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/addQuestion',question);
   }
 
   public user: User;

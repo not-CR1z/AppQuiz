@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,6 +22,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { QuestionComponent } from './components/question/question.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AlphabetPipe } from './alphabet.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterComponent,
     ProfileComponent,
     QuizComponent,
-    QuestionComponent
+    QuestionComponent,
+    AlphabetPipe
   ],
   imports: [
     BrowserModule,
@@ -52,8 +55,10 @@ import { ToastrModule } from 'ngx-toastr';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

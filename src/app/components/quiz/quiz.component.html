@@ -1,40 +1,45 @@
 <div class="quiz_container">
     <h1>Crea un nuevo quiz</h1>
-    <form [formGroup]="quiz" (ngSubmit)="SendQuiz()">
     <div class="quiz_form">
-        <div class="quiz_inputs_top">
-            <div class="quiz_name">
-                <mat-form-field appearance="outline" style="width: 30vw;">
-                    <mat-label>Nombre del quiz</mat-label>
-                    <input matInput formControlName="title" placeholder="Escoja un título para su examen">
-                    <a *ngIf="quiz.get('title')?.hasError('required') && quiz.get('title')?.touched" style="color: tomato;">
-                        Debe asigarle un título a su examen
-                    </a>
+        <form [formGroup]="quiz" (ngSubmit)="SendQuiz()">
+            <div class="quiz_inputs_top">
+                <div class="quiz_name">
+                    <mat-form-field appearance="outline" style="width: 30vw;">
+                        <mat-label>Nombre del quiz</mat-label>
+                        <input matInput formControlName="title" placeholder="Escoja un título para su examen">
+                        <a *ngIf="quiz.get('title')?.hasError('required') && quiz.get('title')?.touched"
+                            style="color: tomato;">
+                            Debe asigarle un título a su examen
+                        </a>
+                    </mat-form-field>
+                </div>
+                <div style=" display: flex;">
+                    <mat-form-field appearance="outline" style="width: 20vw;">
+                        <mat-label>Categoría</mat-label>
+                        <mat-select appearance="outline" formControlName="category">
+                            <mat-option *ngFor="let c of categories" [value]="c.id">{{c.name}}</mat-option>
+                        </mat-select>
+                        <a *ngIf="quiz.get('category')?.hasError('required') && quiz.get('category')?.touched"
+                            style="color: tomato;">
+                            Escoja una categría</a>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div style="display: flex;">
+                <mat-form-field appearance="outline" style="width: 51vw; height: 30vh;">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput formControlName="description"
+                        placeholder="Escribe una descripción de tu examen (Máximo 200 palabras)"
+                        maxlength="200"></textarea>
+                    <a *ngIf="quiz.get('description')?.hasError('required') && quiz.get('description')?.touched"
+                        style="color: tomato;">
+                        Escriba una breve descripción</a>
                 </mat-form-field>
             </div>
-            <div style=" display: flex;">
-                <mat-form-field appearance="outline" style="width: 20vw;">
-                    <mat-label>Categoría</mat-label>
-                    <mat-select appearance="outline" formControlName="category">
-                        <mat-option value="red">Red</mat-option>
-                        <mat-option value="green">Green</mat-option>
-                        <mat-option value="blue">Blue</mat-option>
-                    </mat-select>
-                    <a *ngIf="quiz.get('category')?.hasError('required') && quiz.get('category')?.touched" style="color: tomato;">
-                        Escoja una categría</a>
-                </mat-form-field>
-            </div>
-        </div>
-        <div style="display: flex;">
-            <mat-form-field appearance="outline" style="width: 51vw; height: 30vh;">
-                <mat-label>Descripción</mat-label>
-                <textarea matInput formControlName="description" placeholder="Escribe una descripción de tu examen (Máximo 200 palabras)" maxlength="200"></textarea>
-                <a *ngIf="quiz.get('description')?.hasError('required') && quiz.get('description')?.touched" style="color: tomato;">
-                    Escriba una breve descripción</a>
-            </mat-form-field>
-        </div>
+        </form>
     </div>
-    </form>
+    <div style="text-align: center;">
+        <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">atras</button>
+        <button class="next_button" mat-raised-button color="primary" type="submit">siguiente</button>
+    </div>
 </div>
-<button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">atras</button>
-<button class="next_button" mat-raised-button color="primary" routerLink="/question">siguiente</button>

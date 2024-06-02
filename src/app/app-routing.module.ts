@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'quiz', component: QuizComponent},
-  {path: 'question', component: QuestionComponent},
+  {path: 'question/:quizId', component: QuestionComponent},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: '/dashboard'},
 ];

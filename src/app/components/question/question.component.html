@@ -1,32 +1,33 @@
-<h1>Pregunta 1</h1>
+<h1>Pregunta {{counter}}</h1>
 <div class="question_container">
-    <div class="question_text_container">
-        <div style="margin-right: 5rem;"></div>
-        <div>
-        <mat-form-field style="width: 50vw;" appearance="outline">
-            <textarea matInput placeholder="Escribe aquí tu pregunta"></textarea>
-          </mat-form-field>
-        </div>
-        <div style="margin-left: 30px;">
-          <button (click)="options.push(options[-1]+1)" mat-fab color="primary" aria-label="Agregar opción">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
+  <div class="question_text_container">
+    <div style="margin-right: 5rem;"></div>
+    <div>
+      <mat-form-field style="width: 50vw;" appearance="outline">
+        <textarea [(ngModel)]="question.name" matInput placeholder="Escribe aquí tu pregunta"></textarea>
+      </mat-form-field>
     </div>
-    <div class="answer_container" *ngFor="let i of options">
-        <section style="padding: 0px 1.2rem;">
-            <mat-card-content style="padding: 0.3rem 1.2rem">
-                <mat-radio-button color="primary" style="transform: scale(1.5);"></mat-radio-button>
-                <span class="option_letter">A.</span><mat-form-field appearance="outline"
-                    style="width: 40vw;"><input matInput placeholder="Escribe una opción"></mat-form-field>
-            </mat-card-content>
-        </section>
-        <button (click)="options.splice(i,1)" mat-fab color="warn" aria-label="eliminar respuesta">
-          <mat-icon>delete</mat-icon>
-        </button>
+    <div style="margin-left: 30px;">
+      <button mat-fab color="primary" aria-label="Agregar opción" (click)="OptionPush()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
+  </div>
+
+  <div class="answer_container" *ngFor="let option of question.answers; let i = index">
+    <section style="padding: 0px 1.2rem;">
+      <mat-card-content style="padding: 0.3rem 1.2rem">
+        <mat-radio-button (click)="CheckBoxStatusChanged(i)" color="primary" style="transform: scale(1.5);"></mat-radio-button>
+        <span class="option_letter">{{i+1 | alphabet}}.</span><mat-form-field appearance="outline" style="width: 40vw;">
+          <input [(ngModel)]="option.name" matInput placeholder="Escribe una opción de respuesta"></mat-form-field>
+      </mat-card-content>
+    </section>
+    <button mat-fab color="warn" aria-label="eliminar respuesta" (click)="question.answers.splice(i,1)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>
 <div style="text-align: center;">
-    <button class="back_button" mat-raised-button color="raised">ir a inicio</button>
-    <button class="next_button" mat-raised-button color="primary" routerLink="/dashboard">siguiente</button>
+  <button class="back_button" mat-raised-button color="raised">Ir a inicio y terminar</button>
+  <button class="next_button" mat-raised-button color="primary" (click)="AddQuiz()">Siguiente pregunta</button>
 </div>
