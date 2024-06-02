@@ -1,6 +1,6 @@
 body {
     align-items: center;
-    height: 90vh;
+    height: 100vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -46,7 +46,7 @@ span {
     box-shadow: #222222 0px 0px 600px;
 }
 
-.button input {
+#login_button {
     width: 120px;
     height: 50px;
     border-radius: 0.5em;
@@ -56,7 +56,7 @@ span {
     cursor: pointer;
 }
 
-.button input:hover {
+#login_button:hover {
     background-color: #050505;
 }
 

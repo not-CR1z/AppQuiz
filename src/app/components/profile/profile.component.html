@@ -1,14 +1,15 @@
+<app-navbar></app-navbar>
 <div class="profile_container">
     <div class="profile_header">
         <h1>Mi perfil</h1>
         <div class="profile_header_container">
             <div style="display: flex; flex-direction: row;">
                 <div class="info_user">
-                    <span style="font-size: 50px;">Crixtoph</span>
-                    <button mat-raised-button color="primary" style="width: 120px;">Cambiar contraseña</button>
+                    <span style="font-size: 3.3rem;">{{userName}}</span>
+                    <button mat-raised-button color="primary" style="width: 8rem;">Cambiar contraseña</button>
                 </div>
                 <div class="avatar">
-                    <img class="avatar_image" [src]="avatarImage" alt="bear avatar">
+                    <img class="avatar_image" [src]="avatarImage" alt="profile avatar">
                 </div>
             </div>
         </div>
@@ -16,23 +17,25 @@
     <div>
         <h2>Mis quizzes</h2>
         <div class="cards">
-            <div *ngFor="let c of cards" class="card">
-                <mat-card class="example-card">
+            <div *ngFor="let e of exams" class="card">
+                <mat-card class="example-card" style="width: 20rem; height: 25rem; border-radius: 1rem;">
                     <mat-card-header>
                       <mat-card-title-group>
-                        <mat-card-title>Shiba Inu</mat-card-title>
-                        <mat-card-subtitle>Small</mat-card-subtitle>
-                        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+                        <mat-card-title>{{e.name}}</mat-card-title>
+                        <mat-card-subtitle>categoría: {{e.category.name}}</mat-card-subtitle>
                       </mat-card-title-group>
                     </mat-card-header>
                     <mat-card-content>
-                      {{longText}}
+                      <img style="width: 18rem; height: 12rem; border-radius: 1rem; margin-top: 0.5rem;" [src]="e.category.image" >
+                    </mat-card-content>
+                    <mat-card-content style="display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; text-overflow: ellipsis;">
+                      {{e.description}}
                     </mat-card-content>
                     <div class="exams_actions_container">
-                      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+                      <button mat-mini-fab color="accent">
                         <mat-icon>edit</mat-icon>
                       </button>
-                      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
+                      <button mat-mini-fab color="warn" style="margin-left: 0.5rem;">
                         <mat-icon>delete</mat-icon>
                       </button>
                     </div>

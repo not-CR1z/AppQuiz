@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <h1>Pregunta {{counter}}</h1>
 <div class="question_container">
   <div class="question_text_container">
@@ -17,9 +18,11 @@
   <div class="answer_container" *ngFor="let option of question.answers; let i = index">
     <section style="padding: 0px 1.2rem;">
       <mat-card-content style="padding: 0.3rem 1.2rem">
-        <mat-radio-button (click)="CheckBoxStatusChanged(i)" color="primary" style="transform: scale(1.5);"></mat-radio-button>
+        <mat-radio-button (click)="CheckBoxStatusChanged(i)" color="primary"
+          style="transform: scale(1.5);"></mat-radio-button>
         <span class="option_letter">{{i+1 | alphabet}}.</span><mat-form-field appearance="outline" style="width: 40vw;">
-          <input [(ngModel)]="option.name" matInput placeholder="Escribe una opción de respuesta"></mat-form-field>
+          <input #opt [(ngModel)]="option.name" matInput placeholder="Escribe una opción de respuesta"><span
+            *ngIf="opt.value==''">No pueden haber opciones en blanco</span></mat-form-field>
       </mat-card-content>
     </section>
     <button mat-fab color="warn" aria-label="eliminar respuesta" (click)="question.answers.splice(i,1)">

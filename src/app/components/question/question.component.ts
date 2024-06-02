@@ -13,6 +13,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent {
+  counter = 1;
+  quizId: number;
+  question: Question;
+
   constructor(private quizService: QuizService, private route: ActivatedRoute, private toastr: ToastrService,private spinner: NgxSpinnerService) {
     route.params.subscribe(p => {
       this.quizId = parseInt(p['quizId']);
@@ -32,14 +36,12 @@ export class QuestionComponent {
       };
     })
   }
-  counter = 1;
-  quizId: number;
   CheckBoxStatusChanged(index: number) {
     this.question.answers.forEach(a => a.isTrue = false);
     this.question.answers[index].isTrue ? this.question.answers[index].isTrue = false : this.question.answers[index].isTrue = true;
   }
-  question: Question;
   AddQuiz() {
+    if(this.question.answers)
     this.spinner.show()
     this.quizService.AddQuestion(this.question).subscribe(data => {
       this.toastr.success('Pregunta guardada', data.message)

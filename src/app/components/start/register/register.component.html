@@ -3,7 +3,7 @@
         <mat-icon class="quiz_ico">quiz</mat-icon><i>QuizApp</i>
         <h4>Ingrese un nuevo usuario y contraseña</h4>
         <form [formGroup]="register" (ngSubmit)="Send()">
-            <div ali>
+            <div>
                 <input type="text" placeholder="Usuario" formControlName="user">
                 <br>
                 <span *ngIf="register.get('user')?.hasError('required') && register.get('user')?.touched">
@@ -29,10 +29,12 @@
                 <br>
                 <span *ngIf="register.hasError('notSame')">Las contraseñas no coinciden</span>
             </div>
-            <br><br>
+            <br>
             <div class="button">
-                <button id="button" mat-button type="submit" >Continuar</button>
+                <button id="login_button" mat-raised-button type="submit">Listo</button>
             </div>
         </form>
+        <br>
+        <i class="create_account" routerLink="/login">¿Ya tienes una cuenta?</i>
     </div>
 </body>

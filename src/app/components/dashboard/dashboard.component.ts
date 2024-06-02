@@ -8,15 +8,17 @@ import { QuizService } from 'src/app/quiz.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
- 
-  constructor(private toast:ToastrService, private quizService: QuizService) {
-    
+  userName: string;
+  constructor(private toast: ToastrService, private quizService: QuizService) {
+
   }
   ngOnInit(): void {
-    this.quizService.GetQuizzes().subscribe(data=>{
+    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.userName = userInfo.userName;
+    this.quizService.GetQuizzes().subscribe(data => {
       this.exams = data;
     })
   }
   exams = [];
-  cards = [1,2,3,4,5,6];
+  cards = [1, 2, 3, 4, 5, 6];
 }

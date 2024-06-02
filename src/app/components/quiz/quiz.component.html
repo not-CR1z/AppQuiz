@@ -1,7 +1,8 @@
+<app-navbar></app-navbar>
 <div class="quiz_container">
     <h1>Crea un nuevo quiz</h1>
+    <form [formGroup]="quiz" (ngSubmit)="SendQuiz()">
     <div class="quiz_form">
-        <form [formGroup]="quiz" (ngSubmit)="SendQuiz()">
             <div class="quiz_inputs_top">
                 <div class="quiz_name">
                     <mat-form-field appearance="outline" style="width: 30vw;">
@@ -36,10 +37,10 @@
                         Escriba una breve descripción</a>
                 </mat-form-field>
             </div>
-        </form>
-    </div>
+        </div>
     <div style="text-align: center;">
         <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">atras</button>
         <button class="next_button" mat-raised-button color="primary" type="submit">siguiente</button>
     </div>
+</form>
 </div>

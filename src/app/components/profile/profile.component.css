@@ -23,7 +23,7 @@
 .info_user {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     margin-right: 60px;
 }
 
@@ -34,7 +34,7 @@
 
 .avatar_image {
     border-radius: 50%;
-    width: 140px;
+    width: 10rem;
     display: block;
 }
 
