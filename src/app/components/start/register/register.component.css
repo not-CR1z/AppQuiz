@@ -34,10 +34,9 @@ span {
     background-color: #212121;
     flex-direction: column;
     width: 380px;
-    height: 500px;
+    height: 90vh;
     border: 1.5px solid #415866;
     border-radius: 0.5em;
-    box-shadow: #222222 0px 0px 600px;
 }
 
 #login_button{

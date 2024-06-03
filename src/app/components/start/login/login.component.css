@@ -43,7 +43,6 @@ span {
     height: 500px;
     border: 1.5px solid #415866;
     border-radius: 0.5em;
-    box-shadow: #222222 0px 0px 600px;
 }
 
 #login_button {

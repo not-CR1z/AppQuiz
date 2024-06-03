@@ -1,22 +1,20 @@
 <app-navbar></app-navbar>
-<h3 style="margin-left: 6%; margin-bottom: 0px;">¡Hola {{userName}}, tenemos nuevos examenes para tí!</h3>
+<h2 style="margin-bottom: 0px; text-align: center;">¡Hola {{userName}}, tenemos nuevos examenes para tí!</h2>
 <div class="cards">
-  <div *ngFor="let c of cards" class="card">
-    <mat-card class="example-card">
+  <div *ngFor="let c of exams" class="card">
+    <mat-card class="example-card" style="width: 24rem; height: 30rem; border-radius: 1rem;">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <div mat-card-avatar [style.background-image]="'url('+ c.creator.avatar.image +')'" [style.background-size]="'cover'"></div>
+        <mat-card-title>{{c.name}}</mat-card-title>
+        <mat-card-subtitle>{{c.creator.userName}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://s.france24.com/media/display/6aca8d1a-7783-11ea-9cf2-005056bf87d6/w:1280/p:16x9/WEB%2005ABR%20DEPORTES%20PORTADA%20FOTO.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
+      <mat-card-content style="display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; text-overflow: ellipsis; height: 23rem;">
+        <img style="width: 22rem; height: 15rem; border-radius: 1rem; margin-top: 0.5rem;" [src]="c.category.image" mat-card-image  src = {{c.category.image}} alt="Photo of a Shiba Inu">
         <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
+          {{c.description}}
         </p>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions style="justify-content: end;">
         <button mat-button>Ir a examen</button>
       </mat-card-actions>
     </mat-card>

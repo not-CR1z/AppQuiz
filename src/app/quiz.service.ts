@@ -34,6 +34,8 @@ export class QuizService {
   public GetOwnQuizzes(ownerId: number): Observable<any>{
     return this.http.post('https://localhost:7043/api/Quiz/getQuizzesByUser',ownerId);
   }
-
+  public DeleteQuiz(quizId: number): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/deleteQuiz',quizId);
+  }
   public UserInfo;
 }

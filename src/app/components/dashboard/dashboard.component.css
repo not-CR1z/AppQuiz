@@ -8,8 +8,7 @@
 }
 
 .card {
-  display: block;
-  margin: 0 0 2rem 0;
+  margin: 0rem 0.2rem 1rem 0.2rem;
 }
 
 .cards {
@@ -26,6 +25,7 @@
   right: 3%;
   height: 40px;
   border-radius: 1rem;
+  z-index: 999;
 }
 
 #button:hover {

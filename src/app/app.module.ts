@@ -56,7 +56,7 @@ import { AlphabetPipe } from './alphabet.pipe';
     MatSelectModule,
     MatRadioModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
