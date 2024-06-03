@@ -40,3 +40,10 @@ export class Category {
     name: string;
     image: string;
 }
+
+export class ChangePassDto {
+    userId: number;
+    currentPassword: string;
+    newPassword: string;
+
+}

@@ -1,4 +1,4 @@
-import { Question, Quiz, User, UserLogin } from './models/QuizModels';
+import { ChangePassDto, Question, Quiz, User, UserLogin } from './models/QuizModels';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -36,6 +36,9 @@ export class QuizService {
   }
   public DeleteQuiz(quizId: number): Observable<any>{
     return this.http.post('https://localhost:7043/api/Quiz/deleteQuiz',quizId);
+  }
+  public ChangePassword(changePassDto: ChangePassDto): Observable<any>{
+    return this.http.post('https://localhost:7043/api/App/changePassword',changePassDto);
   }
   public UserInfo;
 }

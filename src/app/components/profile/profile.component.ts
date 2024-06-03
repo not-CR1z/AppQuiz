@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Quiz } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,7 @@ export class ProfileComponent {
   userName: string;
   exams = [];
 
-  constructor(private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService) {
+  constructor(private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, public dialog: MatDialog) {
     spinner.show();
     let userInfo = JSON.parse(localStorage.getItem("userInfo"));
     quizService.GetOwnQuizzes(userInfo.id).subscribe(data =>{
@@ -33,4 +35,16 @@ export class ProfileComponent {
       var x = data;
     })
   }
+  OpenDialog(){
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      data: {name: this.name, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+  animal: string;
+  name: string;
 }

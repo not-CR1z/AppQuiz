@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <div class="header" style="width: 60vw; text-align: center;">
+        <h1 style="font-size: 3rem;">Este es el nombre del quiz</h1>
+        <i style="font-size: 1.5rem; color: darkgray;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+            quae atque libero. Illum exercitationem
+            mollitia quibusdam? Maiores, accusamus cupiditate maxime quidem suscipit sapiente sint labore quasi, eos
+            quisquam, sequi recusandae!</i>
+    </div>
+    <br><br>
+    <mat-divider style="width: 90vw;"></mat-divider>
+    <div>
+        <div style="width: 50vw">
+            <br><br>
+            <b> 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet nam sit
+                quam deleniti obcaecati
+                minusvitae aspernatur at, deserunt similique ullam ipsum corporis eius soluta est quia ratione expedita
+                consectetur!
+            </b>
+            <br><br>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season"
+                    style="display: block; margin: 1rem ;">
+                    <a style="font-size: 1.3rem; margin-right: 0.5rem;">A.</a>
+                    {{season}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <br>
+            <mat-divider></mat-divider>
+        </div>
+        <div style="width: 50vw">
+            <br><br>
+            <b> 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet nam sit
+                quam deleniti obcaecati
+                minusvitae aspernatur at, deserunt similique ullam ipsum corporis eius soluta est quia ratione expedita
+                consectetur!
+            </b>
+            <br><br>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season"
+                    style="display: block; margin: 1rem ;">
+                    <a style="font-size: 1.3rem; margin-right: 0.5rem;">A.</a>
+                    {{season}}
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <br>
+            <mat-divider></mat-divider>
+        </div>
+    </div>

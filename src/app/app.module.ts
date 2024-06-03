@@ -24,6 +24,11 @@ import { QuestionComponent } from './components/question/question.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlphabetPipe } from './alphabet.pipe';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { MatDialogModule} from '@angular/material/dialog';
+import { ExamPresentationComponent } from './components/exam-presentation/exam-presentation.component';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,9 @@ import { AlphabetPipe } from './alphabet.pipe';
     ProfileComponent,
     QuizComponent,
     QuestionComponent,
-    AlphabetPipe
+    AlphabetPipe,
+    ChangePasswordComponent,
+    ExamPresentationComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,9 @@ import { AlphabetPipe } from './alphabet.pipe';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
+    MatListModule,
+    MatDividerModule,
+    MatDialogModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
