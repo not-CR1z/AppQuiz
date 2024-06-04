@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'quiz', component: QuizComponent},
   {path: 'changePassword', component: ChangePasswordComponent},
-  {path: 'doExam', component: ExamPresentationComponent},
+  {path: 'doExam/:quizId', component: ExamPresentationComponent},
   {path: 'question/:quizId', component: QuestionComponent},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: '/dashboard'},

@@ -1,51 +1,38 @@
 <app-navbar></app-navbar>
 <div style="display: flex; flex-direction: column; align-items: center;">
     <div class="header" style="width: 60vw; text-align: center;">
-        <h1 style="font-size: 3rem;">Este es el nombre del quiz</h1>
-        <i style="font-size: 1.5rem; color: darkgray;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            quae atque libero. Illum exercitationem
-            mollitia quibusdam? Maiores, accusamus cupiditate maxime quidem suscipit sapiente sint labore quasi, eos
-            quisquam, sequi recusandae!</i>
+        <h1 style="font-size: 3rem;">{{quiz.name}}</h1>
+        <i style="font-size: 1.5rem; color: darkgray;">{{quiz.description}}</i>
     </div>
     <br><br>
     <mat-divider style="width: 90vw;"></mat-divider>
+
     <div>
-        <div style="width: 50vw">
+        <div style="width: 50vw" *ngFor="let q of quiz.questions let i = index">
             <br><br>
-            <b> 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet nam sit
-                quam deleniti obcaecati
-                minusvitae aspernatur at, deserunt similique ullam ipsum corporis eius soluta est quia ratione expedita
-                consectetur!
+            <b> {{q.name}}
             </b>
             <br><br>
             <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-                <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season"
+                <mat-radio-button [disabled]="quizFinished" (click)="OptionSelected(a.questionId,a.id,a.name)"
+                    class="example-radio-button" *ngFor="let a of q.answers let op=index" [value]="a"
                     style="display: block; margin: 1rem ;">
-                    <a style="font-size: 1.3rem; margin-right: 0.5rem;">A.</a>
-                    {{season}}
+                    <a style="font-size: 1.3rem; margin-right: 0.5rem;">{{op+1 | alphabet}}.</a>
+                    {{a.name}}
                 </mat-radio-button>
             </mat-radio-group>
-
-            <br>
-            <mat-divider></mat-divider>
-        </div>
-        <div style="width: 50vw">
-            <br><br>
-            <b> 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet nam sit
-                quam deleniti obcaecati
-                minusvitae aspernatur at, deserunt similique ullam ipsum corporis eius soluta est quia ratione expedita
-                consectetur!
-            </b>
-            <br><br>
-            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-                <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season"
-                    style="display: block; margin: 1rem ;">
-                    <a style="font-size: 1.3rem; margin-right: 0.5rem;">A.</a>
-                    {{season}}
-                </mat-radio-button>
-            </mat-radio-group>
-
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <p style="text-decoration: underline;" *ngIf="quizFinished">Respuesta correcta:
+                    {{correct_options[i].name}}</p>
+                <mat-icon style="font-size: 5rem; width: 5rem; height: 5rem;" [ngStyle]="{'color':iconsOnFinish[i]=='cancel'?'tomato' : '#3bd13a'}">{{iconsOnFinish[i]}}</mat-icon>
+            </div>
             <br>
             <mat-divider></mat-divider>
         </div>
     </div>
+    <br><br>
+    <div style="text-align: center;">
+        <button class="next_button" mat-raised-button color="primary" [disabled]="quizFinished" (click)="SendResponses()">Terminar examen</button>
+    </div>
+    <br>
+    <button routerLink="/dashboard" id="back_button" mat-stroked-button color="basic">volver</button>

@@ -8,6 +8,7 @@ export class Quiz {
     categoryId: Category;
     description: string;
     creatorId: number;
+    questions?: Question[];
 }
 
 export class Question {

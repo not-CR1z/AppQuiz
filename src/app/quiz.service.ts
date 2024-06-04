@@ -40,5 +40,8 @@ export class QuizService {
   public ChangePassword(changePassDto: ChangePassDto): Observable<any>{
     return this.http.post('https://localhost:7043/api/App/changePassword',changePassDto);
   }
+  public DoQuiz(quizId: number): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/doQuiz',quizId);
+  }
   public UserInfo;
 }

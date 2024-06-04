@@ -40,7 +40,7 @@ export class QuestionComponent {
     this.question.answers.forEach(a => a.isTrue = false);
     this.question.answers[index].isTrue ? this.question.answers[index].isTrue = false : this.question.answers[index].isTrue = true;
   }
-  AddQuiz() {
+  AddQuestion() {
     if(this.question.answers)
     this.spinner.show()
     this.quizService.AddQuestion(this.question).subscribe(data => {
