@@ -29,6 +29,8 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { ExamPresentationComponent } from './components/exam-presentation/exam-presentation.component';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import { UpdateQuizComponent } from './components/update-quiz/update-quiz.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import {MatDividerModule} from '@angular/material/divider';
     QuestionComponent,
     AlphabetPipe,
     ChangePasswordComponent,
-    ExamPresentationComponent
+    ExamPresentationComponent,
+    UpdateQuizComponent,
   ],
   imports: [
     BrowserModule,

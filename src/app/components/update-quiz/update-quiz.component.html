@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div style="display: flex; justify-content: center; margin-top: 1rem;">
+    <div style="display: flex; flex-direction: column; width: 50vw;">
+        <h1 style="font-size: 3rem;">Actualizar examen</h1>
+        <mat-form-field>
+            <mat-label>Título del examen</mat-label>
+            <input matInput placeholder="Nombre del quiz" [(ngModel)]="quiz.name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <textarea matInput placeholder="Escribe tu descripción" [(ngModel)]="quiz.description"></textarea>
+        </mat-form-field>
+        <br>
+        <div style="display: flex; flex-direction: row;">
+            <button mat-fab color="primary" aria-label="Agregar opción" [routerLink]='"/question/"+quiz.id'>
+                <mat-icon>add</mat-icon>
+            </button>
+            <b style="font-size: 1.6rem; margin-left: 1.6rem;">Lista de preguntas</b>
+        </div>
+        <br>
+        <mat-card style="margin-bottom: 1rem; flex-direction: row; justify-content: space-between;"
+            *ngFor="let q of quiz.questions let i=index">
+            <div>
+                <mat-card-content>{{i+1+'. '}}{{q.name}} </mat-card-content>
+            </div>
+            <div style="justify-content: center;">
+                <mat-icon style="padding: 1rem; color: rgb(54, 180, 180);"
+                    [routerLink]="'/updateQuestion/'+i">edit</mat-icon>
+                <mat-icon style="padding: 1rem; color: tomato;" (click)="DeleteQuestion(q.id, i)">delete</mat-icon>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<button mat-raised-button color="primary" style="position: fixed; bottom: 1rem; right: 1rem;"
+    (click)="UpdateQuiz()">Guardar cambios</button>

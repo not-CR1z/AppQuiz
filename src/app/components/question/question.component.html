@@ -21,16 +21,15 @@
         <mat-radio-button (click)="CheckBoxStatusChanged(i)" color="primary"
           style="transform: scale(1.5);"></mat-radio-button>
         <span class="option_letter">{{i+1 | alphabet}}.</span><mat-form-field appearance="outline" style="width: 40vw;">
-          <input #opt [(ngModel)]="option.name" matInput placeholder="Escribe una opción de respuesta"><span
-            *ngIf="opt.value==''">No pueden haber opciones en blanco</span></mat-form-field>
+          <input [(ngModel)]="option.name" matInput placeholder="Escribe una opción de respuesta"></mat-form-field>
       </mat-card-content>
     </section>
-    <button mat-fab color="warn" aria-label="eliminar respuesta" (click)="question.answers.splice(i,1)">
+    <button mat-fab color="warn" aria-label="eliminar respuesta" (click)="DropOption(i)">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
 </div>
 <div style="text-align: center;">
-  <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">Ir a inicio y terminar</button>
-  <button class="next_button" mat-raised-button color="primary" (click)="AddQuestion()">Siguiente pregunta</button>
+  <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">Volver</button>
+  <button class="next_button" mat-raised-button color="primary" (click)="AddQuestion()">Agregar más preguntas</button>
 </div>

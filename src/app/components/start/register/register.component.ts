@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { UserLogin } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
@@ -13,7 +16,13 @@ import { QuizService } from 'src/app/quiz.service';
 export class RegisterComponent {
   register: FormGroup;
 
-  constructor(private fb: FormBuilder, private quizService: QuizService, private http:HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private quizService: QuizService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) {
     this.register = this.fb.group
       ({
         user: ['', [Validators.required, Validators.minLength(4)]],
@@ -29,16 +38,17 @@ export class RegisterComponent {
   }
 
   async Send() {
+    this.spinner.show();
     let user = new UserLogin();
     user.userName = this.register.get('user').value;
     user.password = this.register.get('pass').value;
-    await this.http.post('https://localhost:7043/api/User',{
-      "userName":"xyza",
-      "password":"456"
-  }).subscribe(data =>{
-      console.log(data);
-      
-    })
-    // this.quizService.RegisterUserService(user);
+    this.quizService.Register(user).subscribe(data => {
+      this.toastr.success(data.message, 'Ahora puedes ingresar con tu usuario')
+      this.spinner.hide();
+      this.router.navigate(['/login']);
+    }), error => {
+      this.toastr.error(error.error.message, 'Prueba con un usuario diferente')
+      this.spinner.hide();
+    }
   }
 }

@@ -5,6 +5,7 @@ import { Quiz } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +13,14 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+EditQuiz(quizId: number) {
+  this.router.navigate(['/updateQuiz/'+ quizId])
+}
   avatarImage: string;
   userName: string;
   exams = [];
 
-  constructor(private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, public dialog: MatDialog) {
+  constructor(private router: Router,private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, public dialog: MatDialog) {
     spinner.show();
     let userInfo = JSON.parse(localStorage.getItem("userInfo"));
     quizService.GetOwnQuizzes(userInfo.id).subscribe(data =>{

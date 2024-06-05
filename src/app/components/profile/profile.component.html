@@ -32,7 +32,7 @@
                       {{e.description}}
                     </mat-card-content>
                     <div class="exams_actions_container">
-                      <button mat-mini-fab color="accent">
+                      <button (click)="EditQuiz(e.id)" mat-mini-fab color="accent">
                         <mat-icon>edit</mat-icon>
                       </button>
                       <button (click)="DeleteQuiz(e.id, i)" mat-mini-fab color="warn" style="margin-left: 0.5rem;">

@@ -40,7 +40,7 @@
         </div>
     <div style="text-align: center;">
         <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">atras</button>
-        <button class="next_button" mat-raised-button color="primary" type="submit">siguiente</button>
+        <button class="next_button" mat-raised-button color="primary" type="submit" [disabled]="!quiz.valid">siguiente</button>
     </div>
 </form>
 </div>

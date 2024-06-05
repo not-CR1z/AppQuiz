@@ -10,9 +10,8 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
-  public RegisterUserService(user: UserLogin) {
-
-    this.http.post(this.ApiUrl + 'addUser', '');
+  public Register(user: UserLogin):Observable<any> {
+    return this.http.post('https://localhost:7043/api/App/addUser', user);
   }
   public Login(user: UserLogin): Observable<any> {
     return this.http.post('https://localhost:7043/api/App/login', user);
@@ -40,8 +39,17 @@ export class QuizService {
   public ChangePassword(changePassDto: ChangePassDto): Observable<any>{
     return this.http.post('https://localhost:7043/api/App/changePassword',changePassDto);
   }
-  public DoQuiz(quizId: number): Observable<any>{
-    return this.http.post('https://localhost:7043/api/Quiz/doQuiz',quizId);
+  public GetQuiz(quizId: number): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/getQuizById',quizId);
   }
-  public UserInfo;
+  public UpdateQuiz(quiz: Quiz): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/updateQuiz',quiz);
+  }
+  public UpdateQuestion(question: Question): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/updateQuestion',question);
+  }
+  public DeleteQuestion(questionId: number): Observable<any>{
+    return this.http.post('https://localhost:7043/api/Quiz/deleteQuestion',questionId);
+  }
+  public quizDto: Quiz;
 }

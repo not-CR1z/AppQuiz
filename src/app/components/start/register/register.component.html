@@ -31,7 +31,7 @@
             </div>
             <br>
             <div class="button">
-                <button id="login_button" mat-raised-button type="submit">Listo</button>
+                <button id="login_button" mat-raised-button [disabled]="!register.valid" type="submit">Listo</button>
             </div>
         </form>
         <br>

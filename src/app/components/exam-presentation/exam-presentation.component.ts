@@ -47,7 +47,7 @@ export class ExamPresentationComponent {
     route.params.subscribe(p => {
       this.quizId = parseInt(p['quizId']);
     })
-    quizService.DoQuiz(this.quizId).subscribe(data => {
+    quizService.GetQuiz(this.quizId).subscribe(data => {
       this.quiz = data;
       this.quiz.questions.forEach(a => {
         this.correct_options.push(a.answers.find(x => x.isTrue));
