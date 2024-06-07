@@ -9,6 +9,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ExamPresentationComponent } from './components/exam-presentation/exam-presentation.component';
 import { UpdateQuizComponent } from './components/update-quiz/update-quiz.component';
+import { UpdateQuestionComponent } from './components/update-quiz/update-question/update-question.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'doExam/:quizId', component: ExamPresentationComponent},
   {path: 'question/:quizId', component: QuestionComponent},
   {path: 'updateQuiz/:quizId', component: UpdateQuizComponent},
+  {path: 'updateQuestion/:indexQuiz', component: UpdateQuestionComponent},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: '/dashboard'},
 ];

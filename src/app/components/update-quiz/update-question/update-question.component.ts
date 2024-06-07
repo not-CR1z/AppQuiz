@@ -1,31 +1,25 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Component } from '@angular/core';
-import { QuizService } from 'src/app/quiz.service';
-import { Answer, Question } from 'src/app/models/QuizModels';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Question, Quiz } from 'src/app/models/QuizModels';
+import { QuizService } from 'src/app/quiz.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  selector: 'app-update-question',
+  templateUrl: './update-question.component.html',
+  styleUrls: ['./update-question.component.css']
 })
-export class QuestionComponent {
+export class UpdateQuestionComponent {
   counter = 1;
-  quizId: number;
+  indexQuiz: number;
   question: Question;
   optionSelected = false;
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private toastr: ToastrService, private spinner: NgxSpinnerService, private location: Location) {
+  constructor(private quizService: QuizService, route: ActivatedRoute, private toastr: ToastrService, private spinner: NgxSpinnerService, private location: Location) {
     route.params.subscribe(p => {
-      this.quizId = parseInt(p['quizId']);
-      this.question = {
-        name: '',
-        answers: [{ name: '', isTrue: false }, { name: '', isTrue: false }, { name: '', isTrue: false }],
-        quizId: this.quizId
-      };
+      this.indexQuiz = parseInt(p['indexQuiz']);
+      this.question = quizService.quizDto.questions[this.indexQuiz];
     })
   }
   DropOption(i: number) {
@@ -41,27 +35,27 @@ export class QuestionComponent {
     this.question.answers[index].isTrue ? this.question.answers[index].isTrue = false : this.question.answers[index].isTrue = true;
     this.optionSelected = true;
   }
-  AddQuestion() {
+  UpdateQuestion() {
     let fieldsIncompletes = this.question.answers.find(x => x.name == '')
     if (!fieldsIncompletes && this.question.name != '') {
       if (this.optionSelected) {
         this.spinner.show()
-        this.quizService.AddQuestion(this.question).subscribe(data => {
+        this.quizService.UpdateQuestion(this.question).subscribe(data => {
           this.toastr.success('Pregunta guardada', data.message)
           this.counter++;
           this.question.name = '';
           this.question.answers.forEach(x => { x.name = ''; });
+          this.location.back();
           this.spinner.hide();
         })
       }
-      else{
+      else {
         this.toastr.info('Marque la opción correcta')
       }
     }
     else {
       this.toastr.info('Asegurate no dejar campos vacíos')
     }
-
   }
   OptionPush() {
     let answer = {
@@ -70,7 +64,7 @@ export class QuestionComponent {
     };
     this.question.answers.push(answer);
   }
-  GoBack(){
+  GoBack() {
     this.location.back();
   }
 }

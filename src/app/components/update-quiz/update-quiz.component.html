@@ -25,7 +25,7 @@
             </div>
             <div style="justify-content: center;">
                 <mat-icon style="padding: 1rem; color: rgb(54, 180, 180);"
-                    [routerLink]="'/updateQuestion/'+i">edit</mat-icon>
+                    (click)="EditQuestion(i)">edit</mat-icon>
                 <mat-icon style="padding: 1rem; color: tomato;" (click)="DeleteQuestion(q.id, i)">delete</mat-icon>
             </div>
         </mat-card>

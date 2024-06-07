@@ -6,6 +6,7 @@ import { QuizService } from 'src/app/quiz.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { Router } from '@angular/router';
+import { ConfirmDeleteModalComponent } from '../modals/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -31,24 +32,22 @@ EditQuiz(quizId: number) {
     this.userName = userInfo.userName;
   }
   DeleteQuiz(quiz: number, index:number){
-    this.spinner.show();
-    this.quizService.DeleteQuiz(quiz).subscribe(data =>{
-      this.toastr.success(data.message, this.exams[index].name + ' removido');
-      this.exams.splice(index, 1);
-    this.spinner.hide();
-      var x = data;
+   const dialogRef = this.dialog.open(ConfirmDeleteModalComponent,{
+      width: '400px'
+    })
+    dialogRef.afterClosed().subscribe(data =>{
+      if (dialogRef.componentInstance.confirmed) {
+        this.spinner.show();
+        this.quizService.DeleteQuiz(quiz).subscribe(data => {
+          this.toastr.success(data.message, this.exams[index].name + ' removido');
+          this.exams.splice(index, 1);
+          this.spinner.hide();
+        })
+      }
     })
   }
-  OpenDialog(){
+  OpenChangePassword(){
     const dialogRef = this.dialog.open(ChangePasswordComponent, {
-      data: {name: this.name, animal: this.animal},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
     });
   }
-  animal: string;
-  name: string;
 }

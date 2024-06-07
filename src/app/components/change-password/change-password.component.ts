@@ -11,7 +11,6 @@ import { QuizService } from 'src/app/quiz.service';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-@Inject(MAT_DIALOG_DATA)
 export class ChangePasswordComponent {
   formPass: FormGroup;
   userInfo: any;
@@ -46,13 +45,9 @@ export class ChangePasswordComponent {
     this.quizService.ChangePassword(changePassDto).subscribe(data => {
       this.toastr.success(data.message,"Acción finalizada")
       this.spinner.hide();
-      this.OnNoClick();
     }, error =>{
       this.toastr.error(error.error.message, "Contraseña incorrecta")
       this.spinner.hide();
     })
-  }
-  OnNoClick(): void {
-    this.dialogRef.close();
   }
 }

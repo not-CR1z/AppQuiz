@@ -30,6 +30,9 @@ import { ExamPresentationComponent } from './components/exam-presentation/exam-p
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { UpdateQuizComponent } from './components/update-quiz/update-quiz.component';
+import { UpdateQuestionComponent } from './components/update-quiz/update-question/update-question.component';
+import { ConfirmDeleteModalComponent } from './components/modals/confirm-delete-modal/confirm-delete-modal.component';
+import { UpdateAvatarComponent } from './components/update-avatar/update-avatar.component';
 
 
 @NgModule({
@@ -46,6 +49,9 @@ import { UpdateQuizComponent } from './components/update-quiz/update-quiz.compon
     ChangePasswordComponent,
     ExamPresentationComponent,
     UpdateQuizComponent,
+    UpdateQuestionComponent,
+    ConfirmDeleteModalComponent,
+    UpdateAvatarComponent
   ],
   imports: [
     BrowserModule,
