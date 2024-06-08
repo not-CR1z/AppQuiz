@@ -24,7 +24,8 @@
             <div style="display: flex; flex-direction: row; justify-content: flex-end;">
                 <p style="text-decoration: underline;" *ngIf="quizFinished">Respuesta correcta:
                     {{correct_options[i].name}}</p>
-                <mat-icon style="font-size: 5rem; width: 5rem; height: 5rem;" [ngStyle]="{'color':iconsOnFinish[i]=='cancel'?'tomato' : '#3bd13a'}">{{iconsOnFinish[i]}}</mat-icon>
+                <mat-icon style="font-size: 5rem; width: 5rem; height: 5rem;"
+                    [ngStyle]="{'color':iconsOnFinish[i]=='cancel'?'tomato' : '#3bd13a'}">{{iconsOnFinish[i]}}</mat-icon>
             </div>
             <br>
             <mat-divider></mat-divider>
@@ -32,7 +33,12 @@
     </div>
     <br><br>
     <div style="text-align: center;">
-        <button class="next_button" mat-raised-button color="primary" [disabled]="quizFinished" (click)="SendResponses()">Terminar examen</button>
+        <button class="next_button" mat-raised-button color="primary" [disabled]="quizFinished"
+            (click)="SendResponses()">Terminar examen</button>
+    </div>
+    <div *ngIf="quizFinished">
+        <app-star-rating></app-star-rating>
+        <button mat-stroked-button>Enviar calificación y regresar</button>
     </div>
     <br>
     <button routerLink="/dashboard" id="back_button" mat-stroked-button color="basic">volver</button>

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/app/models/QuizModels';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exam-presentation',
@@ -13,6 +14,8 @@ export class ExamPresentationComponent {
   selectionList = [];
   quizFinished = false;
   iconsOnFinish = [];
+
+  //Actualiza la opción selecionada por el usuario en la lista correspondiente
   OptionSelected(questionId: number, answerId: number, name: string) {
     let selectedPair = { "questionId": questionId, "answerId": answerId, "name": name };
     let wasIncluded = this.selectionList.find(x => x.questionId == questionId);
@@ -26,7 +29,10 @@ export class ExamPresentationComponent {
       this.selectionList.push(selectedPair);
     }
   }
+
+  //Método encargado de la finalización del examen
   SendResponses() {
+    if(this.selectionList.length == this.correct_options.length){
     this.quizFinished = true;
     let i = 0;
     this.correct_options.forEach(x => {
@@ -39,10 +45,14 @@ export class ExamPresentationComponent {
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  else{
+    this.toastr.info('Asegurate de diligenciar el Quiz por completo','Faltan preguntas por responder')
+  }
+  }
   quizId: number;
   quiz: Quiz;
   correct_options = [];
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private spinner: NgxSpinnerService) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private spinner: NgxSpinnerService, private toastr : ToastrService) {
     spinner.show();
     route.params.subscribe(p => {
       this.quizId = parseInt(p['quizId']);

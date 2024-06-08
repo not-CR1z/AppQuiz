@@ -1,0 +1,11 @@
+<div class="star-rating">
+    <mat-icon style="font-size: 3rem; width: 3rem; height: 3rem;"
+      *ngFor="let i of maxRating"
+      (click)="setRating(i)"
+      [matTooltip]="i + ' stars'"
+      [style.color]="rating >= i ? 'gold' : 'gray'"
+    >
+      star
+    </mat-icon>
+  </div>
+  
