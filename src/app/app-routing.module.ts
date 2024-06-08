@@ -10,6 +10,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { ExamPresentationComponent } from './components/exam-presentation/exam-presentation.component';
 import { UpdateQuizComponent } from './components/update-quiz/update-quiz.component';
 import { UpdateQuestionComponent } from './components/update-quiz/update-question/update-question.component';
+import { UpdateAvatarComponent } from './components/update-avatar/update-avatar.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'question/:quizId', component: QuestionComponent},
   {path: 'updateQuiz/:quizId', component: UpdateQuizComponent},
   {path: 'updateQuestion/:indexQuiz', component: UpdateQuestionComponent},
+  {path: 'updatAvatar/:userId', component: UpdateAvatarComponent},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: '/dashboard'},
 ];

@@ -30,6 +30,7 @@ export class User {
     userName: string;
     password: string;
     avatar: Avatar;
+    avatarId?: number;
 }
 export class Avatar {
     id: number;

@@ -1,1 +1,11 @@
-<p>update-avatar works!</p>
+<app-navbar></app-navbar>
+<h1 style="text-align: center;">Selecciona tu avatar</h1>
+<div class="avatar_container">
+    <mat-card class="example-card" *ngFor="let a of avatarList">
+        <mat-card-header>
+            <mat-radio-button style="transform: scale(2.5);" (click)="UserSelect(a)"></mat-radio-button>
+        </mat-card-header>
+        <img mat-card-image [src]="a.image" style="border-radius: 50%; padding: 1rem; width: 15rem; height: 15rem;">
+    </mat-card>
+</div>
+<button (click)="GoBackAndUpdate()" id="back_button" mat-stroked-button color="basic">volver</button>

@@ -51,5 +51,11 @@ export class QuizService {
   public DeleteQuestion(questionId: number): Observable<any>{
     return this.http.post('https://localhost:7043/api/Quiz/deleteQuestion',questionId);
   }
+  public GetAvatars(): Observable<any>{
+    return this.http.post('https://localhost:7043/api/App/getAvatars','');
+  }
+  public UpdateAvatar(user: User): Observable<any>{
+    return this.http.post('https://localhost:7043/api/App/updateAvatar',user);
+  }
   public quizDto: Quiz;
 }

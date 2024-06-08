@@ -1,7 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Quiz } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
