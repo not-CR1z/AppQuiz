@@ -1,11 +1,11 @@
 <mat-toolbar class="nav">
   <span style="cursor: pointer;" routerLink="/dashboard">QUIZAPP</span>
   <div>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>notifications</mat-icon>
-    </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/profile">
       <mat-icon>face_6</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="LogOut()">
+      <mat-icon>logout</mat-icon>
     </button>
   </div>
 </mat-toolbar>

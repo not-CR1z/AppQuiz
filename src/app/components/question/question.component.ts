@@ -1,9 +1,7 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { QuizService } from 'src/app/quiz.service';
-import { Answer, Question } from 'src/app/models/QuizModels';
+import { Question } from 'src/app/models/QuizModels';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Location } from '@angular/common';
@@ -18,7 +16,14 @@ export class QuestionComponent {
   quizId: number;
   question: Question;
   optionSelected = false;
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private toastr: ToastrService, private spinner: NgxSpinnerService, private location: Location) {
+
+  constructor(
+    private quizService: QuizService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private location: Location
+  ) {
     route.params.subscribe(p => {
       this.quizId = parseInt(p['quizId']);
       this.question = {
@@ -28,6 +33,8 @@ export class QuestionComponent {
       };
     })
   }
+
+  // Quita la opción seleccionada de la lista de respuestas
   DropOption(i: number) {
     if (this.question.answers.length > 2) {
       this.question.answers.splice(i, 1);
@@ -36,11 +43,15 @@ export class QuestionComponent {
       this.toastr.info('Deben haber dos opciones de respuesta por lo menos')
     }
   }
+
+  // Actualiza el checkbox con la opción correcta
   CheckBoxStatusChanged(index: number) {
     this.question.answers.forEach(a => a.isTrue = false);
     this.question.answers[index].isTrue ? this.question.answers[index].isTrue = false : this.question.answers[index].isTrue = true;
     this.optionSelected = true;
   }
+
+  // Guarda la pregunta
   AddQuestion() {
     let fieldsIncompletes = this.question.answers.find(x => x.name == '')
     if (!fieldsIncompletes && this.question.name != '') {
@@ -54,7 +65,7 @@ export class QuestionComponent {
           this.spinner.hide();
         })
       }
-      else{
+      else {
         this.toastr.info('Marque la opción correcta')
       }
     }
@@ -63,6 +74,8 @@ export class QuestionComponent {
     }
 
   }
+
+  // Agrega una nueva opción a la lista de respuestas
   OptionPush() {
     let answer = {
       name: '',
@@ -70,7 +83,9 @@ export class QuestionComponent {
     };
     this.question.answers.push(answer);
   }
-  GoBack(){
+
+  // Devuelve al usuario a la ventana de agregar Quiz
+  GoBack() {
     this.location.back();
   }
 }

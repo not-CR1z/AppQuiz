@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Quiz } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
-import { ConfirmDeleteModalComponent } from '../modals/confirm-delete-modal/confirm-delete-modal.component';
+import { ConfirmModalComponent } from '../modals/confirm-modal/confirm-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -13,6 +13,24 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./update-quiz.component.css']
 })
 export class UpdateQuizComponent {
+  quizId: number;
+  quiz: Quiz;
+  constructor(
+    private quizService: QuizService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private dialog: MatDialog
+  ) {
+    route.params.subscribe(x => this.quizId = parseInt(x['quizId']))
+    quizService.GetQuiz(this.quizId).subscribe(data => {
+      this.quiz = data;
+      quizService.quizDto = data;
+    })
+  }
+
+  // Guarda los cambios del Quiz efectuados por el usuario
   UpdateQuiz() {
     this.spinner.show();
     this.quizService.UpdateQuiz(this.quiz).subscribe(data => {
@@ -25,9 +43,14 @@ export class UpdateQuizComponent {
     }
   }
 
+  // Elimina la pregunta seleccionada por el usuario
   DeleteQuestion(questionId: number, index: number) {
-    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
-      width: '400px'
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      width: '400px',
+      data: {
+        title: "Eliminar Pregunta",
+        description: "Seguro de que deseas eliminar esta pregunta"
+      }
     })
     dialogRef.afterClosed().subscribe(data => {
       if (dialogRef.componentInstance.confirmed) {
@@ -40,15 +63,8 @@ export class UpdateQuizComponent {
       }
     })
   }
-  quizId: number;
-  quiz: Quiz;
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService, private spinner: NgxSpinnerService, private dialog: MatDialog) {
-    route.params.subscribe(x => this.quizId = parseInt(x['quizId']))
-    quizService.GetQuiz(this.quizId).subscribe(data => {
-      this.quiz = data;
-      quizService.quizDto = data;
-    })
-  }
+
+  // Lleva al usuario a la ventana de actualización de pregunta 
   EditQuestion(questionIndex: number) {
     this.router.navigate(['/updateQuestion/' + questionIndex])
   }

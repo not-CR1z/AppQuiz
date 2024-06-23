@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Avatar, User } from 'src/app/models/QuizModels';
@@ -14,7 +14,13 @@ export class UpdateAvatarComponent {
   userInfo: any;
   avatarList: Avatar[];
   avatarSelected: Avatar;
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) {
+
+  constructor(
+    private quizService: QuizService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     spinner.show();
     this.userInfo = quizService.GetTokenDecoded();
     quizService.GetAvatars().subscribe(data => {
@@ -22,6 +28,8 @@ export class UpdateAvatarComponent {
       spinner.hide();
     })
   }
+
+  // Guarda el avatar seleccionado por el usuario y lo devuelve a la ventana del perfil
   async GoBackAndUpdate() {
     this.spinner.show();
     if (this.avatarSelected != undefined) {
@@ -41,9 +49,9 @@ export class UpdateAvatarComponent {
         this.toastr.error(error.error.message);
         this.spinner.hide();
       }
-    )
+      )
     }
-    else{
+    else {
       this.router.navigate(['/profile']);
     }
   }
@@ -54,5 +62,4 @@ export class UpdateAvatarComponent {
     let user = new User();
     user.id = this.userInfo.id;
   }
-
 }

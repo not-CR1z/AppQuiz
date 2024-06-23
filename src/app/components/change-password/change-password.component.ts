@@ -1,7 +1,7 @@
 import { ChangePassDto } from '../../models/QuizModels';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { QuizService } from 'src/app/quiz.service';
@@ -14,6 +14,7 @@ import { QuizService } from 'src/app/quiz.service';
 export class ChangePasswordComponent {
   formPass: FormGroup;
   userInfo: any;
+
   constructor
     (
       private fb: FormBuilder,
@@ -27,13 +28,17 @@ export class ChangePasswordComponent {
         currentPass: ['', [Validators.required, Validators.minLength(4)]],
         newPass: ['', [Validators.required, Validators.minLength(4)]],
         confirm_newPass: ['']
-      }, { validator: this.checkPassword })
+      }, { validator: this.CheckPassword })
   }
-  checkPassword(group: FormGroup): any {
+
+  // Valida que las passwords coincidan
+  CheckPassword(group: FormGroup): any {
     const pass = group.controls['newPass'].value;
     const confirmPass = group.controls['confirm_newPass'].value;
     return pass === confirmPass ? null : { notSame: true };
   }
+
+  // Aplica el cambio de contraseña
   Ok() {
     this.spinner.show();
     this.userInfo = this.quizService.GetTokenDecoded();
@@ -43,9 +48,9 @@ export class ChangePasswordComponent {
       newPassword: this.formPass.get('newPass').value
     }
     this.quizService.ChangePassword(changePassDto).subscribe(data => {
-      this.toastr.success(data.message,"Acción finalizada")
+      this.toastr.success(data.message, "Acción finalizada")
       this.spinner.hide();
-    }, error =>{
+    }, error => {
       this.toastr.error(error.error.message, "Contraseña incorrecta")
       this.spinner.hide();
     })

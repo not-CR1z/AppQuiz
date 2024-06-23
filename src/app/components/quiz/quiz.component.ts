@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -15,7 +15,13 @@ export class QuizComponent {
   quiz: FormGroup;
   categories: Category[];
   userInfo: any;
-  constructor(fb: FormBuilder, private router: Router, private quizService: QuizService, private toastr: ToastrService, private spinner: NgxSpinnerService) {
+  constructor(
+    fb: FormBuilder,
+    private router: Router,
+    private quizService: QuizService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {
     quizService.GetCategories().subscribe(data => {
       this.categories = data;
     })
@@ -26,6 +32,8 @@ export class QuizComponent {
     })
 
   }
+
+  // Guarda la información introducida por el usuario
   SendQuiz() {
     this.spinner.show();
     this.userInfo = this.quizService.GetTokenDecoded();

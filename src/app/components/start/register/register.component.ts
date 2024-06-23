@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { UserLogin } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
 
@@ -31,12 +29,14 @@ export class RegisterComponent {
       }, { validator: this.checkPassword })
   }
 
+  // Valida que las passwords coincidan
   checkPassword(group: FormGroup): any {
     const pass = group.controls['pass'].value;
     const confirmPass = group.controls['confirm_pass'].value;
     return pass === confirmPass ? null : { notSame: true };
   }
 
+  // Envía la información ingresada por el usuario
   async Send() {
     this.spinner.show();
     let user = new UserLogin();

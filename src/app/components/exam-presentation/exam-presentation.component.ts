@@ -11,9 +11,40 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./exam-presentation.component.css']
 })
 export class ExamPresentationComponent {
+  selectionList = [];
+  quizFinished = false;
+  iconsOnFinish = [];
+  stars: number;
+  quizId: number;
+  quiz: Quiz;
+  correct_options = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private quizService: QuizService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
+    spinner.show();
+    route.params.subscribe(p => {
+      this.quizId = parseInt(p['quizId']);
+    })
+    quizService.GetQuiz(this.quizId).subscribe(data => {
+      this.quiz = data;
+      this.quiz.questions.forEach(a => {
+        this.correct_options.push(a.answers.find(x => x.isTrue));
+      });
+      spinner.hide();
+    })
+  }
+
+  // Envía la cantidad de estrellas a ser pintadas en la presentación
   getStars(stars: number) {
     this.stars = stars;
   }
+
+  // Envía las estrellas puntuadas y devuelve al usuario al dashboard
   SendStarsAndGoBack() {
     let stats = new Stats;
     stats.quizId = this.quizId;
@@ -30,11 +61,8 @@ export class ExamPresentationComponent {
       this.router.navigate([['/dashboard']])
     }
   }
-  selectionList = [];
-  quizFinished = false;
-  iconsOnFinish = [];
-  stars: number;
-  //Actualiza la opción selecionada por el usuario en la lista correspondiente
+
+  // Actualiza la opción selecionada por el usuario en la lista correspondiente
   OptionSelected(questionId: number, answerId: number, name: string) {
     let selectedPair = { "questionId": questionId, "answerId": answerId, "name": name };
     let wasIncluded = this.selectionList.find(x => x.questionId == questionId);
@@ -49,7 +77,7 @@ export class ExamPresentationComponent {
     }
   }
 
-  //Método encargado de la finalización del examen
+  // Método encargado de la finalización del examen
   SendResponses() {
     if (this.selectionList.length == this.correct_options.length) {
       this.quizService.PresentQuiz(this.quizId).subscribe(() => {
@@ -70,21 +98,6 @@ export class ExamPresentationComponent {
       this.toastr.info('Asegurate de diligenciar el Quiz por completo', 'Faltan preguntas por responder')
     }
   }
-  quizId: number;
-  quiz: Quiz;
-  correct_options = [];
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) {
-    spinner.show();
-    route.params.subscribe(p => {
-      this.quizId = parseInt(p['quizId']);
-    })
-    quizService.GetQuiz(this.quizId).subscribe(data => {
-      this.quiz = data;
-      this.quiz.questions.forEach(a => {
-        this.correct_options.push(a.answers.find(x => x.isTrue));
-      });
-      spinner.hide();
-    })
-  }
+
 }
 

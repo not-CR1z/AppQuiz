@@ -1,6 +1,6 @@
 import { QuizService } from 'src/app/quiz.service';
-import { Component, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/models/QuizModels';
 import { ToastrService } from 'ngx-toastr';
@@ -14,18 +14,26 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent {
   login: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private quizService: QuizService, private toastr: ToastrService, private spinner: NgxSpinnerService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private quizService: QuizService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {
     this.login = this.fb.group
       ({
         userName: ['', Validators.required],
         password: ['', Validators.required]
       })
   }
+
+  // Envía las credenciales para hacer la autenticación del usuario
   Submit() {
     this.spinner.show();
     let user: UserLogin = this.login.value;
     this.quizService.Login(user).subscribe(data => {
-      localStorage.setItem("token",data.token)
+      localStorage.setItem("token", data.token)
       this.router.navigate(['/dashboard'])
       this.spinner.hide();
 

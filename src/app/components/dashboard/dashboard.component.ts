@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
-import { CookieService } from 'ngx-cookie-service';
+import { Component } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { QuizService } from 'src/app/quiz.service';
 
@@ -14,7 +12,11 @@ export class DashboardComponent {
   avt: any;
   avgStars = [];
   exams = [];
-  constructor( private quizService: QuizService, private spinner: NgxSpinnerService, private cookie: CookieService) {
+
+  constructor(
+    private quizService: QuizService,
+    private spinner: NgxSpinnerService
+  ) {
     this.spinner.show();
     let userInfo = quizService.GetTokenDecoded();
     this.userName = userInfo.UserName;
@@ -25,7 +27,7 @@ export class DashboardComponent {
         x.stats.forEach(y => {
           acc += y.starRating;
         });
-        this.avgStars.push(acc/x.stats.length);
+        this.avgStars.push(acc / x.stats.length);
       });
       this.spinner.hide();
     })

@@ -2,7 +2,7 @@
 <h2 style="margin-bottom: 0px; text-align: center;">¡Hola {{userName}}, tenemos nuevos examenes para tí!</h2>
 <div class="cards">
   <div *ngFor="let c of exams let i = index" class="card">
-    <mat-card class="example-card" style="width: 24rem; height: 30rem; border-radius: 1rem;">
+    <mat-card class="example-card" style="width: 24rem; height: 29rem; border-radius: 1rem;">
       <mat-card-header>
         <div mat-card-avatar [style.background-image]="'url('+ c.creator.avatar.image +')'" [style.background-size]="'cover'"></div>
         <mat-card-title>{{c.name}}</mat-card-title>
@@ -19,7 +19,7 @@
       <mat-card-actions style="justify-content: space-between;">
         <div style="display: flex; align-items: center; padding: 0.3rem;"> 
           <b *ngIf="avgStars[i]>0">{{avgStars[i] | number:'1.1-1'}}</b><mat-icon style="color:gold; margin-right: 1rem;">star</mat-icon>
-          <mat-icon style="color: #bdbdca;">group</mat-icon><b>{{c.attemps}}</b>
+          <mat-icon style="color: #bdbdca; margin-right: 0.2rem;">group</mat-icon><b>{{c.attemps}}</b>
         </div>
         <button mat-button [routerLink]="'/doExam/'+ c.id">Ir a examen</button>
       </mat-card-actions>

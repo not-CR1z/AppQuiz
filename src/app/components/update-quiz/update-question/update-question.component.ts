@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import {  NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Question, Quiz } from 'src/app/models/QuizModels';
+import { Question } from 'src/app/models/QuizModels';
 import { QuizService } from 'src/app/quiz.service';
 import { Location } from '@angular/common';
 
@@ -16,12 +16,20 @@ export class UpdateQuestionComponent {
   indexQuiz: number;
   question: Question;
   optionSelected = false;
-  constructor(private quizService: QuizService, route: ActivatedRoute, private toastr: ToastrService, private spinner: NgxSpinnerService, private location: Location) {
+
+  constructor(
+    private quizService: QuizService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private location: Location
+  ) {
     route.params.subscribe(p => {
       this.indexQuiz = parseInt(p['indexQuiz']);
       this.question = quizService.quizDto.questions[this.indexQuiz];
     })
   }
+  // Elimina la pregunta seleccionada
   DropOption(i: number) {
     if (this.question.answers.length > 2) {
       this.question.answers.splice(i, 1);
@@ -30,11 +38,15 @@ export class UpdateQuestionComponent {
       this.toastr.info('Deben haber dos opciones de respuesta por lo menos')
     }
   }
+
+  // Actualiza el checkbox con la opción correcta
   CheckBoxStatusChanged(index: number) {
     this.question.answers.forEach(a => a.isTrue = false);
     this.question.answers[index].isTrue ? this.question.answers[index].isTrue = false : this.question.answers[index].isTrue = true;
     this.optionSelected = true;
   }
+
+  // Guarda los cambios realizados por el usuario
   UpdateQuestion() {
     let fieldsIncompletes = this.question.answers.find(x => x.name == '')
     if (!fieldsIncompletes && this.question.name != '') {
@@ -57,6 +69,8 @@ export class UpdateQuestionComponent {
       this.toastr.info('Asegurate no dejar campos vacíos')
     }
   }
+
+    // Agrega una nueva opción a la lista de respuestas
   OptionPush() {
     let answer = {
       name: '',

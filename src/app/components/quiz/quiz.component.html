@@ -31,7 +31,7 @@
                     <mat-label>Descripción</mat-label>
                     <textarea matInput formControlName="description"
                         placeholder="Escribe una descripción de tu examen (Máximo 200 palabras)"
-                        maxlength="200"></textarea>
+                        maxlength="130"></textarea>
                     <a *ngIf="quiz.get('description')?.hasError('required') && quiz.get('description')?.touched"
                         style="color: tomato;">
                         Escriba una breve descripción</a>
