@@ -36,9 +36,9 @@ export class ChangePasswordComponent {
   }
   Ok() {
     this.spinner.show();
-    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.userInfo = this.quizService.GetTokenDecoded();
     let changePassDto: ChangePassDto = {
-      userId: this.userInfo.id,
+      userId: this.userInfo.Id,
       currentPassword: this.formPass.get('currentPass').value,
       newPassword: this.formPass.get('newPass').value
     }

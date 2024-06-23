@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { Router } from '@angular/router';
 import { ConfirmDeleteModalComponent } from '../modals/confirm-delete-modal/confirm-delete-modal.component';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-profile',
@@ -19,16 +20,17 @@ EditQuiz(quizId: number) {
   avatarImage: string;
   userName: string;
   exams = [];
+  userInfo;
 
   constructor(private router: Router,private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, public dialog: MatDialog) {
     spinner.show();
-    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    quizService.GetOwnQuizzes(userInfo.id).subscribe(data =>{
+    this.userInfo = quizService.GetTokenDecoded();
+    quizService.GetOwnQuizzes(this.userInfo.Id).subscribe(data =>{
       this.exams = data.quizzes;
     spinner.hide();
     })
-    this.avatarImage = userInfo.avatar.image;
-    this.userName = userInfo.userName;
+    this.avatarImage = this.userInfo.Avatar.Image;
+    this.userName = this.userInfo.UserName;
   }
   DeleteQuiz(quiz: number, index:number){
    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent,{

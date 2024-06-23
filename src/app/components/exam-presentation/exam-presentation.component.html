@@ -33,12 +33,12 @@
     </div>
     <br><br>
     <div style="text-align: center;">
-        <button class="next_button" mat-raised-button color="primary" [disabled]="quizFinished"
+        <button class="next_button" mat-raised-button color="primary" *ngIf="!quizFinished"
             (click)="SendResponses()">Terminar examen</button>
     </div>
     <div *ngIf="quizFinished">
-        <app-star-rating></app-star-rating>
-        <button mat-stroked-button>Enviar calificación y regresar</button>
+        <app-star-rating (starSelected)="getStars($event)"></app-star-rating>
+        <button mat-stroked-button (click)="SendStarsAndGoBack()" *ngIf="stars>0">Enviar calificación y regresar</button>
     </div>
     <br>
     <button routerLink="/dashboard" id="back_button" mat-stroked-button color="basic">volver</button>

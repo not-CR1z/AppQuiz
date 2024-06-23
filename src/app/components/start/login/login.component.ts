@@ -25,7 +25,7 @@ export class LoginComponent {
     this.spinner.show();
     let user: UserLogin = this.login.value;
     this.quizService.Login(user).subscribe(data => {
-      localStorage.setItem("userInfo",JSON.stringify(data))
+      localStorage.setItem("token",data.token)
       this.router.navigate(['/dashboard'])
       this.spinner.hide();
 

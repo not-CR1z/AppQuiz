@@ -14,7 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/start/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './components/profile/profile.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
@@ -23,7 +23,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { QuestionComponent } from './components/question/question.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { AlphabetPipe } from './alphabet.pipe';
+import { AlphabetPipe } from './helpers/alphabet.pipe';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { ExamPresentationComponent } from './components/exam-presentation/exam-presentation.component';
@@ -34,6 +34,7 @@ import { UpdateQuestionComponent } from './components/update-quiz/update-questio
 import { ConfirmDeleteModalComponent } from './components/modals/confirm-delete-modal/confirm-delete-modal.component';
 import { UpdateAvatarComponent } from './components/update-avatar/update-avatar.component';
 import { StarRatingComponent } from './components/exam-presentation/star-rating/star-rating.component';
+import { AddTokenInterceptor } from './helpers/add-token.interceptor';
 
 
 @NgModule({
@@ -80,7 +81,7 @@ import { StarRatingComponent } from './components/exam-presentation/star-rating/
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:AddTokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

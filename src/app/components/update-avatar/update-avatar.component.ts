@@ -16,7 +16,7 @@ export class UpdateAvatarComponent {
   avatarSelected: Avatar;
   constructor(private route: ActivatedRoute, private quizService: QuizService, private spinner: NgxSpinnerService, private toastr: ToastrService, private router: Router) {
     spinner.show();
-    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.userInfo = quizService.GetTokenDecoded();
     quizService.GetAvatars().subscribe(data => {
       this.avatarList = data;
       spinner.hide();
@@ -26,16 +26,14 @@ export class UpdateAvatarComponent {
     this.spinner.show();
     if (this.avatarSelected != undefined) {
       let user: User = {
-        id: this.userInfo.id,
+        id: this.userInfo.Id,
         avatarId: this.avatarSelected.id,
         userName: 'x',
         password: 'x',
         avatar: this.avatarSelected
       }
       await this.quizService.UpdateAvatar(user).subscribe(data => {
-        console.log(data);
-        this.userInfo.avatar = this.avatarSelected;
-        localStorage.setItem("userInfo",JSON.stringify(this.userInfo));
+        localStorage.setItem("token", data.token);
         this.toastr.success(data.message, 'Actualización exitosa');
         this.router.navigate(['/profile']);
         this.spinner.hide();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
+import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import { QuizService } from 'src/app/quiz.service';
 
 @Component({
@@ -8,20 +9,25 @@ import { QuizService } from 'src/app/quiz.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   userName: string;
-avt: any;
-  constructor(private toast: ToastrService, private quizService: QuizService, private spinner: NgxSpinnerService) {
-
-  }
-  ngOnInit(): void {
+  avt: any;
+  avgStars = [];
+  exams = [];
+  constructor( private quizService: QuizService, private spinner: NgxSpinnerService, private cookie: CookieService) {
     this.spinner.show();
-    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    this.userName = userInfo.userName;
+    let userInfo = quizService.GetTokenDecoded();
+    this.userName = userInfo.UserName;
     this.quizService.GetQuizzes().subscribe(data => {
       this.exams = data;
-    this.spinner.hide();
+      this.exams.forEach(x => {
+        let acc = 0;
+        x.stats.forEach(y => {
+          acc += y.starRating;
+        });
+        this.avgStars.push(acc/x.stats.length);
+      });
+      this.spinner.hide();
     })
   }
-  exams = [];
 }

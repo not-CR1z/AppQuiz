@@ -1,12 +1,14 @@
 <app-navbar></app-navbar>
 <h2 style="margin-bottom: 0px; text-align: center;">¡Hola {{userName}}, tenemos nuevos examenes para tí!</h2>
 <div class="cards">
-  <div *ngFor="let c of exams" class="card">
+  <div *ngFor="let c of exams let i = index" class="card">
     <mat-card class="example-card" style="width: 24rem; height: 30rem; border-radius: 1rem;">
       <mat-card-header>
         <div mat-card-avatar [style.background-image]="'url('+ c.creator.avatar.image +')'" [style.background-size]="'cover'"></div>
         <mat-card-title>{{c.name}}</mat-card-title>
-        <mat-card-subtitle>{{c.creator.userName}}</mat-card-subtitle>
+        <mat-card-subtitle style="width: 18rem; display: flex; flex-direction: row; justify-content: space-between;">
+          {{c.creator.userName}}
+        </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content style="display: -webkit-box;-webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; text-overflow: ellipsis; height: 23rem;">
         <img style="width: 22rem; height: 15rem; border-radius: 1rem; margin-top: 0.5rem;" [src]="c.category.image" mat-card-image  src = {{c.category.image}} alt="Photo of a Shiba Inu">
@@ -14,7 +16,11 @@
           {{c.description}}
         </p>
       </mat-card-content>
-      <mat-card-actions style="justify-content: end;">
+      <mat-card-actions style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; padding: 0.3rem;"> 
+          <b *ngIf="avgStars[i]>0">{{avgStars[i] | number:'1.1-1'}}</b><mat-icon style="color:gold; margin-right: 1rem;">star</mat-icon>
+          <mat-icon style="color: #bdbdca;">group</mat-icon><b>{{c.attemps}}</b>
+        </div>
         <button mat-button [routerLink]="'/doExam/'+ c.id">Ir a examen</button>
       </mat-card-actions>
     </mat-card>

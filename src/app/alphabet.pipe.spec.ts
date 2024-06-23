@@ -1,4 +1,4 @@
-import { AlphabetPipe } from './alphabet.pipe';
+import { AlphabetPipe } from './helpers/alphabet.pipe';
 
 describe('AlphabetPipe', () => {
   it('create an instance', () => {

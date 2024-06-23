@@ -2,13 +2,16 @@ export class UserLogin {
     userName: string;
     password: string;
 }
+
 export class Quiz {
     id?: number;
     name: string;
-    categoryId: Category;
     description: string;
+    attemps: number;
+    categoryId: Category;
     creatorId: number;
     questions?: Question[];
+    stats: Stats[];
 }
 
 export class Question {
@@ -32,20 +35,27 @@ export class User {
     avatar: Avatar;
     avatarId?: number;
 }
+
 export class Avatar {
     id: number;
     name: string;
     image: string;
 }
+
 export class Category {
     id: number;
     name: string;
     image: string;
 }
 
+export class Stats{
+    id: number;
+    quizId: number;
+    starRating: number;
+}
+
 export class ChangePassDto {
     userId: number;
     currentPassword: string;
     newPassword: string;
-
 }
