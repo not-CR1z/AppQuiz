@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QuizService {
-  ApiUrl ="https://localhost:7043/api/"
+  ApiUrl ="http://quizapp.somee.com/api/"
   public quizDto: Quiz;
 
   constructor(private http: HttpClient) {
