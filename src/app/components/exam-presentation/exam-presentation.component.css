@@ -18,3 +18,13 @@
   .next_button:hover {
     background-color: black;
   }
+
+  .question_side{
+    width: 60vw;
+  }
+
+  @media (max-width: 768px) {
+    .question_side{
+      width: 94vw;
+    }
+}

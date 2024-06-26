@@ -19,13 +19,6 @@
     margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-    .quiz_form {
-        width: 90vw;
-        height: 65vh;
-    }
-}
-
 .quiz_inputs_top {
     display: flex;
     justify-content: center;
@@ -47,4 +40,48 @@
     width: 14rem;
     bottom: 5%;
     height: 2.6rem
+}
+
+.name {
+    width: 30vw;
+}
+
+.category {
+    width: 20vw;
+}
+
+.description {
+    width: 51vw;
+    height: 30vh;
+}
+
+@media (max-width: 768px) {
+    .quiz_form {
+        width: 94vw;
+        height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 2rem;
+        background-color: #212121;
+    }
+
+    .quiz_inputs_top {
+        display: inline;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .name {
+        width: 80vw;
+    }
+
+    .category {
+        width: 80vw;
+    }
+
+    .description {
+        width: 80vw;
+    }
 }
