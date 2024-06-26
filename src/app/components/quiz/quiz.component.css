@@ -8,8 +8,8 @@
 }
 
 .quiz_form {
-    width: 50rem;
-    height: 25rem;
+    width: 60vw;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,6 +17,13 @@
     border-radius: 2rem;
     background-color: #212121;
     margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .quiz_form {
+        width: 90vw;
+        height: 65vh;
+    }
 }
 
 .quiz_inputs_top {
@@ -35,7 +42,8 @@
     bottom: 5%;
     height: 2.6rem
 }
-.back_button{
+
+.back_button {
     width: 14rem;
     bottom: 5%;
     height: 2.6rem
