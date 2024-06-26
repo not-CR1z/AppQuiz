@@ -8,8 +8,8 @@
 }
 
 .quiz_form {
-    width: 60vw;
-    height: 60vh;
+    width: 50rem;
+    height: 25rem;
     display: flex;
     align-items: center;
     justify-content: center;
