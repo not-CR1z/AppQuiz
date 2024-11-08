@@ -4,7 +4,7 @@
         <h3>Login</h3>
         <form [formGroup]="login" (ngSubmit)="Submit()">
             <div ali>
-                <input type="text" placeholder="Usuario" formControlName="userName">
+                <input type="text" placeholder="username" formControlName="userName">
                 <br>
                 <span *ngIf="login.get('userName')?.hasError('required') && login.get('userName')?.touched">
                     El usuario es requerido
@@ -12,17 +12,17 @@
             </div>
             <br>
             <div>
-                <input type="password" placeholder="Contraseña" formControlName="password">
+                <input type="password" placeholder="password" formControlName="password">
                 <br>
                 <span *ngIf="login.get('password').hasError('required') && login.get('password')?.touched">La contraseña es
                     requerida</span>
             </div>
             <br>
             <div class="button">
-              <button id="login_button" mat-raised-button type="submit">Entrar</button>
+              <button id="login_button" mat-raised-button type="submit">Sign in</button>
             </div>
         </form>
         <br>
-        <i class="create_account" routerLink="/register">Crear una cuenta</i>
+        <i class="create_account" routerLink="/register">Sign up</i>
     </div>
 </body>

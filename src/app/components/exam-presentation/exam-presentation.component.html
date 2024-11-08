@@ -22,7 +22,7 @@
                 </mat-radio-button>
             </mat-radio-group>
             <div style="display: flex; flex-direction: row; justify-content: flex-end;">
-                <p style="text-decoration: underline;" *ngIf="quizFinished">Respuesta correcta:
+                <p style="text-decoration: underline;" *ngIf="quizFinished">Correct option:
                     {{correct_options[i].name}}</p>
                 <mat-icon style="font-size: 5rem; width: 5rem; height: 5rem;"
                     [ngStyle]="{'color':iconsOnFinish[i]=='cancel'?'tomato' : '#3bd13a'}">{{iconsOnFinish[i]}}</mat-icon>
@@ -34,11 +34,11 @@
     <br><br>
     <div style="text-align: center;">
         <button class="next_button" mat-raised-button color="primary" *ngIf="!quizFinished"
-            (click)="SendResponses()">Terminar examen</button>
+            (click)="SendResponses()">Finish</button>
     </div>
     <div *ngIf="quizFinished">
         <app-star-rating (starSelected)="getStars($event)"></app-star-rating>
-        <button mat-stroked-button (click)="SendStarsAndGoBack()" *ngIf="stars>0">Enviar calificación y regresar</button>
+        <button mat-stroked-button (click)="SendStarsAndGoBack()" *ngIf="stars>0">Send stars and go back</button>
     </div>
     <br>
-    <button routerLink="/dashboard" id="back_button" mat-stroked-button color="basic">volver</button>
+    <button routerLink="/dashboard" id="back_button" mat-stroked-button color="basic">go back</button>

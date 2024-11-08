@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
 <div class="quiz_container">
-    <h1>Crea un nuevo quiz</h1>
+    <h1>create a new quiz</h1>
     <form [formGroup]="quiz" (ngSubmit)="SendQuiz()">
     <div class="quiz_form">
             <div class="quiz_inputs_top">
                 <div class="quiz_name">
                     <mat-form-field appearance="outline" class="name" >
-                        <mat-label>Nombre del quiz</mat-label>
+                        <mat-label>Quiz name</mat-label>
                         <input matInput formControlName="title" placeholder="Escoja un título para su examen">
                         <a *ngIf="quiz.get('title')?.hasError('required') && quiz.get('title')?.touched"
                             style="color: tomato;">
@@ -16,7 +16,7 @@
                 </div>
                 <div style=" display: flex;">
                     <mat-form-field appearance="outline" class="category" >
-                        <mat-label>Categoría</mat-label>
+                        <mat-label>Category</mat-label>
                         <mat-select appearance="outline" formControlName="category">
                             <mat-option *ngFor="let c of categories" [value]="c.id">{{c.name}}</mat-option>
                         </mat-select>
@@ -28,7 +28,7 @@
             </div>
             <div style="display: flex;">
                 <mat-form-field appearance="outline" class="description">
-                    <mat-label>Descripción</mat-label>
+                    <mat-label>Description</mat-label>
                     <textarea matInput formControlName="description"
                         placeholder="Escribe una descripción de tu examen (Máximo 200 palabras)"
                         maxlength="130"></textarea>
@@ -39,8 +39,8 @@
             </div>
         </div>
     <div style="text-align: center;">
-        <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">atras</button>
-        <button class="next_button" mat-raised-button color="primary" type="submit" [disabled]="!quiz.valid">siguiente</button>
+        <button class="back_button" mat-raised-button color="raised" routerLink="/dashboard">go back</button>
+        <button class="next_button" mat-raised-button color="primary" type="submit" [disabled]="!quiz.valid">next</button>
     </div>
 </form>
 </div>

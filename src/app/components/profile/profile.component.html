@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
 <div class="profile_container">
     <div class="profile_header">
-        <h1>Mi perfil</h1>
+        <h1>My profile</h1>
         <div class="profile_header_container">
             <div style="display: flex; flex-direction: row;">
                 <div class="info_user">
                     <span style="font-size: 3.3rem;">{{userName}}</span>
-                    <button mat-raised-button color="primary" style="width: 8rem;" (click)="OpenChangePassword()">Cambiar contraseña</button>
+                    <button mat-raised-button color="primary" style="width: 8rem;" (click)="OpenChangePassword()">Change password</button>
                 </div>
                 <div class="avatar">
                     <img class="avatar_image" [src]="avatarImage" alt="profile avatar">
@@ -18,14 +18,14 @@
         </div>
     </div>
     <div>
-        <h2>Mis quizzes</h2>
+        <h2>My quizzes</h2>
         <div class="cards">
             <div *ngFor="let e of exams let i = index" class="card">
                 <mat-card class="example-card" style="width: 20rem; height: 25rem; border-radius: 1rem;">
                     <mat-card-header>
                       <mat-card-title-group>
                         <mat-card-title>{{e.name}}</mat-card-title>
-                        <mat-card-subtitle>categoría: {{e.category.name}}</mat-card-subtitle>
+                        <mat-card-subtitle>category: {{e.category.name}}</mat-card-subtitle>
                       </mat-card-title-group>
                     </mat-card-header>
                     <mat-card-content>

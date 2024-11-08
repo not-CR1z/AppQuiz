@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<h2 style="margin-bottom: 0px; text-align: center;">¡Hola {{userName}}, tenemos nuevos examenes para tí!</h2>
+<h2 style="margin-bottom: 0px; text-align: center;">¡Hi {{userName}}, we've new quizzes for you!</h2>
 <div class="cards">
   <div *ngFor="let c of exams let i = index" class="card">
     <mat-card class="example-card" style="width: 24rem; height: 29rem; border-radius: 1rem;">
@@ -21,9 +21,9 @@
           <b *ngIf="avgStars[i]>0">{{avgStars[i] | number:'1.1-1'}}</b><mat-icon style="color:gold; margin-right: 1rem;">star</mat-icon>
           <mat-icon style="color: #bdbdca; margin-right: 0.2rem;">group</mat-icon><b>{{c.attemps}}</b>
         </div>
-        <button mat-button [routerLink]="'/doExam/'+ c.id">Ir a examen</button>
+        <button mat-button [routerLink]="'/doExam/'+ c.id">Go to quiz</button>
       </mat-card-actions>
     </mat-card>
   </div>
-  <button routerLink="/quiz" id="button" mat-raised-button color="primary">Crear un nuevo examen</button>
+  <button routerLink="/quiz" id="button" mat-raised-button color="primary">New quiz</button>
 </div>

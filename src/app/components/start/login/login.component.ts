@@ -36,7 +36,6 @@ export class LoginComponent {
       localStorage.setItem("token", data.token)
       this.router.navigate(['/dashboard'])
       this.spinner.hide();
-
     },
       error => {
         this.toastr.error(error.error.message, "Error de autenticación")
